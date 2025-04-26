@@ -2,9 +2,13 @@ FROM node:20
 
 WORKDIR /app
 
+COPY package*.json ./
+RUN npm install
+
 COPY . .
 
-RUN npm install
+# Aquí eliminamos cualquier .env interno que pueda existir
+RUN rm -f .env
 
 EXPOSE 8080
 
